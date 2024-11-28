@@ -1,5 +1,7 @@
 import Nav from './../components/navigation'
 import Header from './../components/header'
+import  Card from './../components/Card'
+
 function Home() {
   
 
@@ -7,6 +9,7 @@ function Home() {
     <div className='container all-container'>
      <Nav/>
      <Header/>
+     <Card/>
     </div>
     
     

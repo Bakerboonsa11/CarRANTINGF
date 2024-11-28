@@ -8,9 +8,7 @@
     justify-content: start;
   
 }
-.content-containr{
-   
-}
+
 .head_of_content{
     font-size: 40px;
 }
@@ -21,7 +19,7 @@
 }
 .head_p{
     font-size: 18px;
-    font-family:;
+    color: #555;
     letter-spacing: 1.5;
 }
 .head-img img{
@@ -35,23 +33,40 @@
     align-items: center;
     padding-left: 90px;
 }
-.button_p{
-    font-size: 10px;
-   
-}
-.button_head{
-    font-size: 15px;
-    margin: 0;
- 
-}
+
+
 .download-btn{
-    width: 150px;
+    width: 13rem;
     background-color: #172774;
 }
 
 
 
 
-    
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Prevents horizontal scrolling */
+}
 
-    
+.container {
+  max-width: 100%; /* Ensures container does not exceed screen width */
+  overflow-x: hidden;
+}
+
+.row {
+  margin: 0; /* Removes potential negative margins that may cause overflow */
+}
+
+.button_head {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin: 0; /* Prevents additional spacing */
+}
+
+.button_p {
+  font-size: 0.9rem;
+  color: #fff;
+  margin: 0;
+}
+
