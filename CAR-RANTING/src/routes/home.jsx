@@ -3,6 +3,7 @@ import Header from './../components/header'
 import  Card from './../components/Card'
 import SecondCard from './../components/secondheader'
 import  WhyUs from './../components/whyUs'
+import  Testmonial from './../components/testmonial'
 function Home() {
   
 
@@ -13,6 +14,7 @@ function Home() {
      <Card/>
      <SecondCard/>
      <WhyUs/>
+     <Testmonial/>
     </div>
     
     

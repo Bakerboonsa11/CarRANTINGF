@@ -1,0 +1,62 @@
+/* Testimonials.css */
+
+/* Section Title */
+.section-title {
+  color: #172774;
+  font-size: 2.5rem;
+  position: relative;
+}
+.section-title::after {
+  content: "";
+  display: block;
+  width: 50px;
+  height: 3px;
+  background: #172774;
+  margin: 10px auto 0;
+  border-radius: 2px;
+}
+
+/* Card Styling */
+.testimonial-card {
+  border: none;
+  background: linear-gradient(135deg, #ffffff, #f7f9fc);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+.testimonial-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Testimonial Image */
+.testimonial-img {
+  border: 4px solid #172774;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+.testimonial-img:hover {
+  transform: scale(1.1);
+}
+
+/* Fade-in Animation */
+.animate-fade-in {
+  animation: fadeIn 1s ease-in-out;
+}
+.animate-fade-in.delay-1s {
+  animation-delay: 1s;
+}
+.animate-fade-in.delay-2s {
+  animation-delay: 2s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
