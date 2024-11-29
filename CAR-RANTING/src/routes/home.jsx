@@ -1,7 +1,8 @@
 import Nav from './../components/navigation'
 import Header from './../components/header'
 import  Card from './../components/Card'
-
+import SecondCard from './../components/secondheader'
+import  WhyUs from './../components/whyUs'
 function Home() {
   
 
@@ -10,6 +11,8 @@ function Home() {
      <Nav/>
      <Header/>
      <Card/>
+     <SecondCard/>
+     <WhyUs/>
     </div>
     
     
