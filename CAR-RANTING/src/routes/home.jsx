@@ -4,6 +4,8 @@ import  Card from './../components/Card'
 import SecondCard from './../components/secondheader'
 import  WhyUs from './../components/whyUs'
 import  Testmonial from './../components/testmonial'
+import Contact from './../components/contact'
+import Footer from './../components/Footer'
 function Home() {
   
 
@@ -15,6 +17,8 @@ function Home() {
      <SecondCard/>
      <WhyUs/>
      <Testmonial/>
+     <Contact/>
+     <Footer/>
     </div>
     
     

@@ -1,12 +1,15 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faApple, faGooglePlay } from "@fortawesome/free-brands-svg-icons";
+import React, { useState, useEffect } from 'react';
 import { faMapMarkerAlt, faCalendarAlt, faClock,faGear, faChair, faGasPump, faBolt, faCar } from "@fortawesome/free-solid-svg-icons";
-
+import axios from "axios";
 
 
 import './styles/card.css';
 
 const Card = () => {
+  const [cars,setCars]=useState([]);
+  const [loder,setLoder]=useState(true)
   return (
     <div className="card-wrapper">
       <div className="container card_container">
