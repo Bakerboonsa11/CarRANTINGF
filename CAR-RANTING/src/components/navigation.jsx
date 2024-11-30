@@ -1,9 +1,9 @@
 import { useState } from "react";
 import "./styles/nav.css";
-
+import { useNavigate } from "react-router-dom";
 const Nav = () => {
   const [isNavbarCollapsed, setIsNavbarCollapsed] = useState(true);
-
+  const navigate=useNavigate()
   const toggleNavbar = () => {
     setIsNavbarCollapsed(!isNavbarCollapsed);
   };
@@ -69,6 +69,7 @@ const Nav = () => {
               className="btn signIn"
               type="button"
               aria-label="LogIn"
+              onClick={()=>navigate('/LogIn')}
             >
               LogIn
             </button>
