@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
 import './index.css'
 import Home from './routes/home.jsx'
 import Login from './components/login.jsx'
+import SignUp from './components/signup.jsx'
 
 import {createBrowserRouter,RouterProvider} from 'react-router-dom'
 
@@ -17,6 +18,10 @@ const Router=createBrowserRouter([
   {
     path:'/LogIn',
     element:<Login/>
+  },
+   {
+    path:'/SignUp',
+    element:<SignUp/>
   }
 ])
 

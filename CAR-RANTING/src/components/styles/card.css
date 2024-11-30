@@ -54,10 +54,17 @@
     font-weight: 900;
     
 }
+.card-icon-to-title{
+    /* background-color: blue; */
+    width: 25%;
+    margin-right: 10px;
+    align-items: center;
+    text-align: center;
+}
 
 
-    
-        
-
+    .se-detail-btn{
+        width: 100%;
+    }
         
     

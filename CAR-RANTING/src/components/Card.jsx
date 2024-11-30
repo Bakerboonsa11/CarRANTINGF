@@ -56,7 +56,7 @@ const Card =() => {
                             <p className="card-text price-text">$29/DAY{`$${car.pricePerDay}/DAY`}</p>
                         <div className="d-flex justify-content-between">
                                 {/* Feature 1: Manual */}
-                                <div className="d-flex flex-column mb-3">
+                                <div className="d-flex flex-column mb-3 card-icon-to-title">
                                   <span className="card-icon why-icon">
                                     <FontAwesomeIcon icon={faGear} className="my-icons" /> {/* Replace with your desired icon */}
                                   </span>
@@ -64,15 +64,15 @@ const Card =() => {
                                 </div>
 
                                 {/* Feature 2: Seats */}
-                                <div className="d-flex flex-column mb-3">
+                                <div className="d-flex flex-column mb-3 card-icon-to-title">
                                   <span className="card-icon">
                                     <FontAwesomeIcon icon={faChair} className="my-icons" /> {/* Replace with your desired icon */}
                                   </span>
-                                  <span className="card-text">5 Seats</span>
+                                  <span className="card-text">5 ST</span>
                                 </div>
 
                                 {/* Feature 3: Gas */}
-                                <div className="d-flex flex-column mb-3">
+                                <div className="d-flex flex-column mb-3 card-icon-to-title">
                                   <span className="card-icon">
                                     <FontAwesomeIcon icon={faGasPump} className="my-icons" /> {/* Replace with your desired icon */}
                                   </span>
@@ -80,7 +80,7 @@ const Card =() => {
                                 </div>
 
                                 {/* Feature 4: Car HP */}
-                                <div className="d-flex flex-column mb-3">
+                                <div className="d-flex flex-column mb-3 card-icon-to-title">
                                   <span className="card-icon">
                                     <FontAwesomeIcon icon={faBolt} className="my-icons"/> {/* Replace with your desired icon */}
                                   </span>
@@ -88,7 +88,7 @@ const Card =() => {
                                 </div>
 
                                 {/* Feature 5: Front-wheel Drive */}
-                                <div className="d-flex flex-column mb-3">
+                                <div className="d-flex flex-column mb-3 card-icon-to-title">
                                   <span className="card-icon">
                                     <FontAwesomeIcon icon={faCar} className="my-icons"/> {/* Replace with your desired icon */}
                                   </span>
@@ -96,7 +96,7 @@ const Card =() => {
                                 </div>
                            </div>
 
-                            <a href="#" className="card-link btn card-link">See Detail</a>
+                            <a href="#" className="card-link btn card-link se-detail-btn">See Detail</a>
                           </div>
                   </div>
           </div >

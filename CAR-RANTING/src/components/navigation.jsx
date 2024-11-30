@@ -62,6 +62,7 @@ const Nav = () => {
               className="btn signUp"
               type="button"
               aria-label="SignUp"
+               onClick={()=>navigate('/SignUp')}
             >
               SignUp
             </button>
