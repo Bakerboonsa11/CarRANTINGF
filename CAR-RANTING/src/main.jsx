@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client'
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
 import './index.css'
 import Home from './routes/home.jsx'
-import Login from './components/login.jsx'
+import Login ,{LogInAction}from './components/login.jsx'
 import SignUp ,{signUpAction} from './components/signup.jsx'
 import { NavProvider } from "../src/context/navContext.jsx";
 import {createBrowserRouter,RouterProvider} from 'react-router-dom'
@@ -17,7 +17,9 @@ const Router=createBrowserRouter([
   },
   {
     path:'/LogIn',
-    element:<Login/>
+    element:<Login/>,
+    action:LogInAction
+
   },
    {
     path:'/SignUp',

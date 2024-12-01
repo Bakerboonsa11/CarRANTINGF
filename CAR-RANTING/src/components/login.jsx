@@ -1,6 +1,38 @@
 import Nav from './../components/navigation'
+import axios from 'axios'
+import { useEffect } from 'react'
+import { Form, useActionData, useNavigate } from 'react-router-dom'
+import { useNav } from "../context/navContext";
+export const LogInAction=async({request})=>{
+    try{
+    const formData=await request.formData()
+    const email=formData.get("email")
+    const password=formData.get("password")
+    console.log(email,password)
+    const response= await axios.post('http://127.0.0.1:3000/api/v1/user/signIn',{
+        email,
+        password
+    })
+   const user=response.data.user
+    return {user}
+    }
+    catch(error){
+        console.log(error)
+    }
 
+
+  
+}
 const Login = () => {
+  const user=useActionData()
+  const navigate=useNavigate()
+  const {setDataAction}=useNav()
+  useEffect(()=>{
+    if(user){
+        setDataAction(user)
+        navigate('/')
+    }
+  },[user])
   return (
     <>
     <Nav/>
@@ -15,7 +47,7 @@ const Login = () => {
         >
           Login
         </h2>
-        <form>
+        <Form method='post' action='/LogIn'>
           {/* Email Input */}
           <div className="form-group mb-3">
             <label htmlFor="email" className="form-label">
@@ -25,6 +57,7 @@ const Login = () => {
               type="email"
               className="form-control"
               id="email"
+              name="email"
               placeholder="Enter your email"
               required
               style={{
@@ -43,6 +76,7 @@ const Login = () => {
               type="password"
               className="form-control"
               id="password"
+              name='password'
               placeholder="Enter your password"
               required
               style={{
@@ -67,7 +101,7 @@ const Login = () => {
           >
             Login
           </button>
-        </form>
+        </Form>
 
         <p className="text-center mt-4">
           <a
