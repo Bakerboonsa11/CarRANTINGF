@@ -4,8 +4,8 @@ import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
 import './index.css'
 import Home from './routes/home.jsx'
 import Login from './components/login.jsx'
-import SignUp from './components/signup.jsx'
-
+import SignUp ,{signUpAction} from './components/signup.jsx'
+import { NavProvider } from "../src/context/navContext.jsx";
 import {createBrowserRouter,RouterProvider} from 'react-router-dom'
 
 
@@ -21,13 +21,17 @@ const Router=createBrowserRouter([
   },
    {
     path:'/SignUp',
-    element:<SignUp/>
+    element:<SignUp/>,
+    action:signUpAction,
   }
 ])
 
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-   <RouterProvider router={Router}></RouterProvider>
+    <NavProvider>
+        <RouterProvider router={Router}></RouterProvider>
+    </NavProvider>
+ 
   </StrictMode>,
 )

@@ -6,12 +6,18 @@ import  WhyUs from './../components/whyUs'
 import  Testmonial from './../components/testmonial'
 import Contact from './../components/contact'
 import Footer from './../components/Footer'
-function Home() {
-  
 
+
+function Home() {
+ 
+ 
   return (
+  
     <div className='container all-container'>
-     <Nav/>
+     
+            <Nav/>
+    
+   
      <Header/>
      <Card/>
      <SecondCard/>
