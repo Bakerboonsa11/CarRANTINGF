@@ -19,21 +19,21 @@ export const signUpAction = async ({ request }) => {
     });
 
     // Extract token from the response
-    const token = response.data.token;
-    console.log("Token received:", token); // Logs the token
+    const user= response.data.user;
+    console.log("user received:", user); // Logs the token
 
     // Redirect and pass the token in the state
-    return {token}
+    return {user}
   } catch (err) {
     console.error("Error during sign up:", err.message);
   }
 };
 
 const SignUp = () => {
-    const dataAction =useActionData()
+    const user =useActionData()
     const { setDataAction } = useNav(); 
     const navigate=useNavigate()
-   console.log('action adata',dataAction)
+   console.log('action adata',user)
 //  const [logedIn,setLoggedIn]=useState(null)
 //  const [isLoding,setIsLoding]=useState(true)
 //     useEffect(()=>{
@@ -50,16 +50,16 @@ const SignUp = () => {
       
 //     },[])
             useEffect(()=>{
-                if(dataAction){
-                    setDataAction(dataAction)
+                if(user){
+                    setDataAction(user)
                       navigate('/')
                 }
               
-            },[dataAction])
+            },[user])
   return (
     <> 
   
-
+      <Nav/>
      <div className="d-flex justify-content-center align-items-center vh-100 bg-light">
       <div className="card shadow-lg p-4" style={{ width: "30rem", borderRadius: "15px" }}>
         <h2 className="text-center mb-4" style={{ color: "#172774" }}>

@@ -6,13 +6,13 @@ import { useNav } from "../context/navContext"; // Import the custom hook
 const Nav = () => {
   const [isNavbarCollapsed, setIsNavbarCollapsed] = useState(true);
   const navigate = useNavigate();
-  const { dataAction } = useNav(); // Access dataAction from the context
+  const { user } = useNav(); // Access dataAction from the context
 
   const toggleNavbar = () => {
     setIsNavbarCollapsed(!isNavbarCollapsed);
   };
 
-  console.log("data action in nav:", dataAction);
+  console.log("user in nav:", user);
 
   return (
     <nav className="navbar navbar-expand-lg">
@@ -64,7 +64,7 @@ const Nav = () => {
 
           {/* Signup/Login or User Profile */}
           <div className="d-flex">
-            {dataAction ? (
+            {user? (
               // If dataAction exists, show the user profile with a circle image and logout button
               <>
                 <img

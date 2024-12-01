@@ -5,10 +5,10 @@ const NavContext = createContext();
 
 // Create a Provider for Nav Context
 export const NavProvider = ({ children }) => {
-  const [dataAction, setDataAction] = useState(null);
+  const [user, setDataAction] = useState(null);
 
   return (
-    <NavContext.Provider value={{ dataAction, setDataAction }}>
+    <NavContext.Provider value={{ user, setDataAction }}>
       {children}
     </NavContext.Provider>
   );
