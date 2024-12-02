@@ -2,15 +2,32 @@ import { useState } from "react";
 import "./styles/nav.css";
 import { useNavigate } from "react-router-dom";
 import { useNav } from "../context/navContext"; // Import the custom hook
+import axios from "axios";
 
+ 
 const Nav = () => {
   const [isNavbarCollapsed, setIsNavbarCollapsed] = useState(true);
   const navigate = useNavigate();
-  const { user } = useNav(); // Access dataAction from the context
+ const {setDataAction,user}=useNav() // Access dataAction from the context
 
   const toggleNavbar = () => {
     setIsNavbarCollapsed(!isNavbarCollapsed);
   };
+
+const LogOut = async () => {
+  try {
+    const response = await axios.get("http://127.0.0.1:8000/api/v1/user/logOut", {
+      withCredentials: true, // Ensure cookies are sent
+    });
+    if (response.data.status === "success") {
+      setDataAction(undefined);
+      navigate("/");
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 
   console.log("user in nav:", user);
 
@@ -82,10 +99,7 @@ const Nav = () => {
                   className="btn logout"
                   type="button"
                   aria-label="LogOut"
-                  onClick={() => {
-                    console.log("Logging out...");
-                    navigate("/LogIn"); // Redirect to LogIn page after logout
-                  }}
+                  onClick={LogOut}
                 >
                   LogOut
                 </button>

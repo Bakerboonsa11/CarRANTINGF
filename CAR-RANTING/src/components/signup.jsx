@@ -11,7 +11,7 @@ export const signUpAction = async ({ request }) => {
     const name = formData.get('name');
     const confirmPassword = formData.get('confirmPassword');
     
-    const response = await axios.post('http://127.0.0.1:3000/api/v1/user/signUp', {
+    const response = await axios.post('http://127.0.0.1:8000/api/v1/user/signUp', {
       email,
       name,
       password,

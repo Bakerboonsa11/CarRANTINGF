@@ -9,7 +9,7 @@ export const LogInAction=async({request})=>{
     const email=formData.get("email")
     const password=formData.get("password")
     console.log(email,password)
-    const response= await axios.post('http://127.0.0.1:3000/api/v1/user/signIn',{
+    const response= await axios.post('http://127.0.0.1:8000/api/v1/user/signIn',{
         email,
         password
     })
