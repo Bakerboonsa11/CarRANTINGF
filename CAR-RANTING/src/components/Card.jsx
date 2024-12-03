@@ -3,7 +3,7 @@ import { faApple, faGooglePlay } from "@fortawesome/free-brands-svg-icons";
 import  { useState, useEffect } from 'react';
 import { faMapMarkerAlt, faCalendarAlt, faClock,faGear, faChair, faGasPump, faBolt, faCar } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
-
+import { Link } from "react-router-dom";
 
 import './styles/card.css';
 
@@ -96,7 +96,7 @@ const Card =() => {
                                 </div>
                            </div>
 
-                            <a href="#" className="card-link btn card-link se-detail-btn">See Detail</a>
+                            <Link to={`/Detail/${car.id}`} className="card-link btn card-link se-detail-btn">See Detail</Link>
                           </div>
                   </div>
           </div >

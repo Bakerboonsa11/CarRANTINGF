@@ -16,7 +16,8 @@ export const signUpAction = async ({ request }) => {
       name,
       password,
       confirmPassword
-    });
+    },{withCredentials: true});
+  
 
     // Extract token from the response
     const user= response.data.user;

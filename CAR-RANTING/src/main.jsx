@@ -5,6 +5,7 @@ import './index.css'
 import Home from './routes/home.jsx'
 import Login ,{LogInAction}from './components/login.jsx'
 import SignUp ,{signUpAction} from './components/signup.jsx'
+import Detail from './components/carDetail.jsx'
 import { NavProvider } from "../src/context/navContext.jsx";
 import {createBrowserRouter,RouterProvider} from 'react-router-dom'
 
@@ -25,6 +26,11 @@ const Router=createBrowserRouter([
     path:'/SignUp',
     element:<SignUp/>,
     action:signUpAction,
+  },
+  {
+    path:'/detail/:id',
+    element:<Detail/>
+    
   }
 ])
 
