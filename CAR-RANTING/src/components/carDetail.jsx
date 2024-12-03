@@ -26,8 +26,7 @@ const CarDetail = () => {
 //     fuelType: "Hybrid",
 //     transmission: "Automatic",
 //     color: "White",
-//     description: "A compact and reliable car, great for city and highway driving.",
-//     images: [
+//   
 //      
 //       
 //   
