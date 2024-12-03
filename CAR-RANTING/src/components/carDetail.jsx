@@ -25,8 +25,7 @@ const CarDetail = () => {
 //     mileage: 15000,
 //     fuelType: "Hybrid",
 //     transmission: "Automatic",
-//     color: "White",
-//   
+//
 //      
 //       
 //   
