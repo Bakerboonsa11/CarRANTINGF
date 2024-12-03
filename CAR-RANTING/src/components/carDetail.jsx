@@ -23,9 +23,7 @@ const CarDetail = () => {
 //     year: 2022,
 //     pricePerDay: 500,
 //     mileage: 15000,
-//     fuelType: "Hybrid",
-//     transmission: "Automatic",
-//
+//    
 //      
 //       
 //   
