@@ -30,9 +30,7 @@ const CarDetail = () => {
 //     images: [
 //       "https://via.placeholder.com/800x400", // Replace with actual image URLs
 //       "https://via.placeholder.com/400x300",
-//       "https://via.placeholder.com/400x300",
-    
-//     ],
+//       
 //   
 //   
 //   };
