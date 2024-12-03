@@ -5,7 +5,7 @@ import './index.css'
 import Home from './routes/home.jsx'
 import Login ,{LogInAction}from './components/login.jsx'
 import SignUp ,{signUpAction} from './components/signup.jsx'
-import Detail from './components/carDetail.jsx'
+import CarDetail,{CarLoader} from './components/carDetail.jsx'
 import { NavProvider } from "../src/context/navContext.jsx";
 import {createBrowserRouter,RouterProvider} from 'react-router-dom'
 
@@ -29,8 +29,8 @@ const Router=createBrowserRouter([
   },
   {
     path:'/detail/:id',
-    element:<Detail/>
-    
+    element:<CarDetail/>,
+    loader:CarLoader
   }
 ])
 

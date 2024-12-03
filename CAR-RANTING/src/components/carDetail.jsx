@@ -1,31 +1,73 @@
 import Nav from "./navigation";
 import Footer from "./Footer";
+import { useNav } from "../context/navContext";
+import { useState,useEffect } from "react";
+import { useLoaderData } from "react-router-dom";
+import axios from 'axios';
+export const CarLoader = async ({ params }) => {
+  try {
+    const res = await axios.get(`http://127.0.0.1:8000/api/v1/car/${params.id}`, { withCredentials: true });
+    const car = res.data.data;
+    return { car }; // Ensure correct structure
+  } catch (error) {
+    console.error("Error fetching car data:", error.response || error.message);
+    throw new Error("Failed to load car data"); // Triggers React Router's error handling
+  }
+};
 
 
 const CarDetail = () => {
-  const car = {
-    name: "Toyota4",
-    make: "Toyota",
-    year: 2022,
-    pricePerDay: 500,
-    mileage: 15000,
-    fuelType: "Hybrid",
-    transmission: "Automatic",
-    color: "White",
-    description: "A compact and reliable car, great for city and highway driving.",
-    images: [
-      "https://via.placeholder.com/800x400", // Replace with actual image URLs
-      "https://via.placeholder.com/400x300",
-      "https://via.placeholder.com/400x300",
+//   const car = {
+//     name: "Toyota4",
+//     make: "Toyota",
+//     year: 2022,
+//     pricePerDay: 500,
+//     mileage: 15000,
+//     fuelType: "Hybrid",
+//     transmission: "Automatic",
+//     color: "White",
+//     description: "A compact and reliable car, great for city and highway driving.",
+//     images: [
+//       "https://via.placeholder.com/800x400", // Replace with actual image URLs
+//       "https://via.placeholder.com/400x300",
+//       "https://via.placeholder.com/400x300",
     
-    ],
-    location: { address: "123 Main Street, Springfield" },
-    createdAt: "2024-11-19T16:53:55.824+00:00",
-    updatedAt: "2024-11-19T16:53:55.824+00:00",
-    RatingAvrg: 1.9,
-    RatingQuantity: 1,
-  };
+//     ],
+//     location: { address: "123 Main Street, Springfield" },
+//     createdAt: "2024-11-19T16:53:55.824+00:00",
+//     updatedAt: "2024-11-19T16:53:55.824+00:00",
+//   
+//   };
+ const [currentRating, setCurrentRating] = useState(0); // Start rating from 0
+  const [currentReviews, setCurrentReviews] = useState(0); // Start reviews from 0
+  const {car}=useLoaderData()
+  console.log('car in component',car)
+  useEffect(() => {
+    let ratingInterval;
+    let reviewInterval;
 
+    if (currentRating < car.RatingAvrg
+) {
+      ratingInterval = setInterval(() => {
+        setCurrentRating((prev) => (prev < car.RatingAvrg? prev + 0.1 : car.RatingAvrg));
+      }, 50); // Increment by 0.1 every 50ms
+    }
+
+
+
+
+
+    if (currentReviews <  car.RatingQuantity) {
+      reviewInterval = setInterval(() => {
+        setCurrentReviews((prev) => (prev < car.RatingQuantity ? prev + 1 : car.RatingQuantity));
+      }, 100); // Increment by 1 every 100ms
+    }
+
+    return () => {
+      clearInterval(ratingInterval);
+      clearInterval(reviewInterval);
+    };
+  }, [car.RatingAvrg, car.RatingQuantity, currentRating, currentReviews]);
   return (
     <>
     <Nav/>
@@ -84,13 +126,13 @@ const CarDetail = () => {
 
             <div className="d-flex justify-content-between align-items-center">
               <div>
-                <h5>
-                  Rating:{" "}
-                  <span className="badge bg-warning text-dark">
-                    {car.RatingAvrg} ★
-                  </span>{" "}
-                  ({car.RatingQuantity} Reviews)
-                </h5>
+                 <h5>
+      Rating:{" "}
+      <span className="badge bg-warning text-dark">
+        {currentRating.toFixed(1)} ★
+      </span>{" "}
+      ({currentReviews} Reviews)
+    </h5>
               </div>
               <button className="btn btn-primary btn-lg">Book Now</button>
             </div>

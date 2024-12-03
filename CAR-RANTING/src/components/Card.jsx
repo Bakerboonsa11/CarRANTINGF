@@ -40,7 +40,7 @@ const Card =() => {
         <div className="row justify-content-around">
             {
               cars.map((car)=>(
-              <div className="col-lg-4 col-md-6 mb-4 each-card">
+              <div key={car._id} className="col-lg-4 col-md-6 mb-4 each-card">
                   <div className="card card-custom" style={{ width: '100%' }}>
                           <img
                             src="/images/indigo.png" 
@@ -53,7 +53,7 @@ const Card =() => {
                               <div>**********</div>
                             </div>
                             <h6 className="card-subtitle mb-2 text-body-secondary">{car.name}</h6>
-                            <p className="card-text price-text">$29/DAY{`$${car.pricePerDay}/DAY`}</p>
+                            <p className="card-text price-text">{`$${car.pricePerDay}/DAY`}</p>
                         <div className="d-flex justify-content-between">
                                 {/* Feature 1: Manual */}
                                 <div className="d-flex flex-column mb-3 card-icon-to-title">
@@ -96,7 +96,7 @@ const Card =() => {
                                 </div>
                            </div>
 
-                            <Link to={`/Detail/${car.id}`} className="card-link btn card-link se-detail-btn">See Detail</Link>
+                            <Link to={`/detail/${car._id}`} className="card-link btn card-link se-detail-btn">See Detail</Link>
                           </div>
                   </div>
           </div >
