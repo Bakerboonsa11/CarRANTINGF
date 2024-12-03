@@ -33,7 +33,7 @@ const CarDetail = () => {
 //       "https://via.placeholder.com/400x300",
     
 //     ],
-//     location: { address: "123 Main Street, Springfield" },
+//   
 //   
 //   };
  const [currentRating, setCurrentRating] = useState(0); // Start rating from 0
