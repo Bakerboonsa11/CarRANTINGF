@@ -21,8 +21,7 @@ const CarDetail = () => {
 //     name: "Toyota4",
 //     make: "Toyota",
 //     year: 2022,
-//     pricePerDay: 500,
-//     mileage: 15000,
+//    
 //    
 //      
 //       
