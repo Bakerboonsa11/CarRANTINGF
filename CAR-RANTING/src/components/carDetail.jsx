@@ -19,9 +19,7 @@ export const CarLoader = async ({ params }) => {
 const CarDetail = () => {
 //   const car = {
 //     name: "Toyota4",
-//     make: "Toyota",
-//     year: 2022,
-//    
+//   
 //    
 //      
 //       
