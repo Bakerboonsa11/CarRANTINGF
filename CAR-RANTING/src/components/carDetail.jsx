@@ -34,7 +34,6 @@ const CarDetail = () => {
     
 //     ],
 //     location: { address: "123 Main Street, Springfield" },
-//     createdAt: "2024-11-19T16:53:55.824+00:00",
 //   
 //   };
  const [currentRating, setCurrentRating] = useState(0); // Start rating from 0
