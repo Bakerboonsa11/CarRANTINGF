@@ -17,15 +17,7 @@ export const CarLoader = async ({ params }) => {
 
 
 const CarDetail = () => {
-//   const car = {
 
-//   
-//    
-//      
-//       
-//   
-//   
-//   };
  const [currentRating, setCurrentRating] = useState(0); // Start rating from 0
   const [currentReviews, setCurrentReviews] = useState(0); // Start reviews from 0
   const {car}=useLoaderData()
