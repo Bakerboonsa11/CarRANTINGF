@@ -18,7 +18,7 @@ export const CarLoader = async ({ params }) => {
 
 const CarDetail = () => {
 //   const car = {
-//     name: "Toyota4",
+
 //   
 //    
 //      
