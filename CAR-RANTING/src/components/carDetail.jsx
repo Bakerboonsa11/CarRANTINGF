@@ -28,8 +28,7 @@ const CarDetail = () => {
 //     color: "White",
 //     description: "A compact and reliable car, great for city and highway driving.",
 //     images: [
-//       "https://via.placeholder.com/800x400", // Replace with actual image URLs
-//       "https://via.placeholder.com/400x300",
+//      
 //       
 //   
 //   
