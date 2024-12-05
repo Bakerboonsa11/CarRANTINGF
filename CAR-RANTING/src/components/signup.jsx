@@ -22,7 +22,7 @@ export const signUpAction = async ({ request }) => {
     // Extract token from the response
     const user= response.data.user;
     console.log("user received:", user); // Logs the token
-
+    
     // Redirect and pass the token in the state
     return {user}
   } catch (err) {

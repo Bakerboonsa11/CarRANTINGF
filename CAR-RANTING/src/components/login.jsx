@@ -1,54 +1,66 @@
 import Nav from './../components/navigation'
 import axios from 'axios'
-import { useEffect } from 'react'
-import { Form, useActionData, useNavigate } from 'react-router-dom'
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useNav } from "../context/navContext";
-export const LogInAction=async({request})=>{
-    try{
-    const formData=await request.formData()
-    const email=formData.get("email")
-    const password=formData.get("password")
-    console.log(email,password)
-    const response= await axios.post('http://127.0.0.1:8000/api/v1/user/signIn',{
-        email,
-        password
-    },{withCredentials: true})
-   const user=response.data.user
-    return {user}
-    }
-    catch(error){
-        console.log(error)
-    }
 
-
-  
-}
 const Login = () => {
-  const user=useActionData()
-  const navigate=useNavigate()
-  const {setDataAction}=useNav()
-  useEffect(()=>{
-    if(user){
-        setDataAction(user)
-        navigate('/')
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState(null); // For error display
+  const navigate = useNavigate();
+  const { setDataAction } = useNav();
+
+  // Handle the login action when the button is clicked
+  const handleLogin = async () => {
+    try {
+      console.log("Email:", email, "Password:", password);
+
+      const response = await axios.post(
+        "http://127.0.0.1:8000/api/v1/user/signIn",
+        {
+          email,
+          password,
+        },
+        { withCredentials: true }
+      );
+
+      const user = response.data.user;
+
+      // Save user to localStorage immediately
+      localStorage.setItem("user", JSON.stringify(user));
+
+      setDataAction(user); // Update context
+      navigate("/"); // Redirect to home page
+
+    } catch (error) {
+      console.log("Error during login:", error);
+      setErrorMessage("Login failed. Please try again.");
     }
-  },[user])
+  };
+
   return (
     <>
-    <Nav/>
-     <div
-      className="d-flex justify-content-center align-items-center vh-100"
-      style={{ backgroundColor: "#f4f4f4" }}
-    >
-      <div className="card shadow p-4" style={{ width: "400px", borderRadius: "10px" }}>
-        <h2
-          className="text-center mb-4"
-          style={{ color: "#172774", fontWeight: "bold" }}
+      <Nav />
+      <div
+        className="d-flex justify-content-center align-items-center vh-100"
+        style={{ backgroundColor: "#f4f4f4" }}
+      >
+        <div
+          className="card shadow p-4"
+          style={{ width: "400px", borderRadius: "10px" }}
         >
-          Login
-        </h2>
-        <Form method='post' action='/LogIn'>
-          {/* Email Input */}
+          <h2
+            className="text-center mb-4"
+            style={{ color: "#172774", fontWeight: "bold" }}
+          >
+            Login
+          </h2>
+
+          {errorMessage && (
+            <div className="alert alert-danger">{errorMessage}</div>
+          )}
+
           <div className="form-group mb-3">
             <label htmlFor="email" className="form-label">
               Email Address
@@ -60,6 +72,8 @@ const Login = () => {
               name="email"
               placeholder="Enter your email"
               required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               style={{
                 border: `2px solid #172774`,
                 borderRadius: "5px",
@@ -67,7 +81,6 @@ const Login = () => {
             />
           </div>
 
-          {/* Password Input */}
           <div className="form-group mb-4">
             <label htmlFor="password" className="form-label">
               Password
@@ -76,9 +89,11 @@ const Login = () => {
               type="password"
               className="form-control"
               id="password"
-              name='password'
+              name="password"
               placeholder="Enter your password"
               required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               style={{
                 border: `2px solid #172774`,
                 borderRadius: "5px",
@@ -86,10 +101,10 @@ const Login = () => {
             />
           </div>
 
-          {/* Submit Button */}
           <button
-            type="submit"
+            type="button"
             className="btn btn-block w-100"
+            onClick={handleLogin}
             style={{
               backgroundColor: "#172774",
               color: "#fff",
@@ -101,27 +116,23 @@ const Login = () => {
           >
             Login
           </button>
-        </Form>
 
-        <p className="text-center mt-4">
-          <a
-            href="#"
-            style={{
-              textDecoration: "none",
-              color: "#172774",
-              fontWeight: "bold",
-            }}
-          >
-            Forgot Password?
-          </a>
-        </p>
+          <p className="text-center mt-4">
+            <a
+              href="#"
+              style={{
+                textDecoration: "none",
+                color: "#172774",
+                fontWeight: "bold",
+              }}
+            >
+              Forgot Password?
+            </a>
+          </p>
+        </div>
       </div>
-    </div>
     </>
-   
   );
 };
 
 export default Login;
-
-

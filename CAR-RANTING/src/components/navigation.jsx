@@ -13,6 +13,9 @@ const Nav = () => {
   const toggleNavbar = () => {
     setIsNavbarCollapsed(!isNavbarCollapsed);
   };
+  const navigateToMyPro=()=>{
+    navigate('/myProfile')
+  }
 
 const LogOut = async () => {
   try {
@@ -85,6 +88,7 @@ const LogOut = async () => {
               // If dataAction exists, show the user profile with a circle image and logout button
               <>
                 <img
+                  onClick={navigateToMyPro}
                   src="/images/bonsa.jpg" // Replace with actual user image URL or avatar
                   alt="User"
                   className="user-profile-img"
