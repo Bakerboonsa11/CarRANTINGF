@@ -1,24 +1,35 @@
 import Nav from "./navigation";
 import Footer from "./Footer";
-import { useLoaderData } from "react-router-dom";
+import { redirect, useLoaderData } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { width } from "@fortawesome/free-brands-svg-icons/fa42Group";
 
 export const CarLoader = async ({ params }) => {
+  const token=localStorage.getItem("jwt")
   try {
     const res = await axios.get(
       `http://127.0.0.1:8000/api/v1/car/${params.id}`,
-      { withCredentials: true }
+      { withCredentials: true,
+        headers:{
+          Authorization:`Bearer ${token}`
+        }
+       }
     );
     const car = res.data.data;
     return { car };
   } catch (error) {
     console.error("Error fetching car data:", error.response || error.message);
-    throw new Error("Failed to load car data");
+    throw redirect('LognIn')
   }
 };
 
 const CarDetail = () => {
+    const [reviews, setReviews] = useState([
+    { id: 1, name: "John Doe", rating: 5, comment: "Amazing car! Great experience.", timestamp: "2024-12-05T12:34:00" },
+    { id: 2, name: "Jane Smith", rating: 4, comment: "Good service overall.", timestamp: "2024-12-04T15:22:00" },
+    { id: 3, name: "Alex Johnson", rating: 3, comment: "Decent, but could be better.", timestamp: "2024-12-03T10:15:00" },
+  ]);
   const [currentRating, setCurrentRating] = useState(0);
   const [currentReviews, setCurrentReviews] = useState(0);
   const [reviewText, setReviewText] = useState(""); // For the review textarea
@@ -171,6 +182,42 @@ const CarDetail = () => {
           </div>
         </div>
       </div>
+      <div className="container mt-5" style={{width:"50%",overflowX:"hidden"}}>
+      <h3 className="text-primary mb-4">Customer Reviews</h3>
+      <div className="reviews-list">
+        {reviews.map((review) => (
+          <div className="review-card mb-4 p-4 shadow-sm rounded" key={review.id}>
+            <div className="d-flex align-items-center mb-3">
+              <div
+                className="rounded-circle bg-primary text-white d-flex justify-content-center align-items-center"
+                style={{
+                  width: "40px",
+                  height: "40px",
+                  fontSize: "1.5rem",
+                }}
+              >
+                {review.name[0]}
+              </div>
+              <div className="ms-3">
+                <h5 className="mb-1">{review.name}</h5>
+                <div className="d-flex">
+                  <div className="text-warning">
+                    {"★".repeat(review.rating)}
+                    {"☆".repeat(5 - review.rating)}
+                  </div>
+                </div>
+                <small className="text-muted">{new Date(review.timestamp).toLocaleString()}</small>
+              </div>
+            </div>
+            <p>{review.comment}</p>
+            <div className="reply-section mt-3">
+              <button className="btn btn-outline-primary btn-sm">Reply</button>
+              {/* Add nested replies here if needed */}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
       <Footer />
     </>
   );
