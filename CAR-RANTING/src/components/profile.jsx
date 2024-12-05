@@ -25,9 +25,15 @@ const MyProfile = () => {
 
   const handleSave = async() => { 
     try{
+      const token = localStorage.getItem("jwt");
+
     const response=await axios.patch(`http://127.0.0.1:8000/api/v1/user/${storedUser._id}`,formData,{
+      headers:{
+        Authorization:`Bearer ${token}`
+      },
       withCredentials:true
     })
+    
     console.log("user after update",response.data.updatedTo)
     setDataAction(response.data.updatedTo);
     const user="colcollee"

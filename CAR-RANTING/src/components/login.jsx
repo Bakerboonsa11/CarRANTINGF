@@ -24,12 +24,12 @@ const Login = () => {
         },
         { withCredentials: true }
       );
-
+     
       const user = response.data.user;
 
       // Save user to localStorage immediately
       localStorage.setItem("user", JSON.stringify(user));
-
+      localStorage.setItem("jwt",response.data.token)
       setDataAction(user); // Update context
       navigate("/"); // Redirect to home page
 
