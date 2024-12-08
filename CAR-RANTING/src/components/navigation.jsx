@@ -1,41 +1,61 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./styles/nav.css";
 import { useNavigate } from "react-router-dom";
 import { useNav } from "../context/navContext"; // Import the custom hook
-import axios from "axios";
+import { HashLink } from "react-router-hash-link";
 
- 
 const Nav = () => {
   const [isNavbarCollapsed, setIsNavbarCollapsed] = useState(true);
+  const [user, setUser] = useState(() => {
+    // Initialize user state from localStorage
+    const userData = localStorage.getItem("user");
+    return userData && userData !== "undefined" ? JSON.parse(userData) : null;
+  });
+  const [jwt, setjwt] = useState(() => {
+    // Initialize user state from localStorage
+    const jwt= localStorage.getItem("jwt");
+    return jwt
+  });
+
   const navigate = useNavigate();
- const {setDataAction,user}=useNav() // Access dataAction from the context
+  const { setDataAction } = useNav(); // Access dataAction from the context
 
   const toggleNavbar = () => {
     setIsNavbarCollapsed(!isNavbarCollapsed);
   };
-  const navigateToMyPro=()=>{
-    navigate('/myProfile')
-  }
 
-const LogOut = async () => {
-  try {
-    const response = await axios.get("http://127.0.0.1:8000/api/v1/user/logOut", {
-      withCredentials: true, // Ensure cookies are sent
-    });
-    if (response.data.status === "success") {
-      setDataAction(undefined);
-      navigate("/");
-    }
-  } catch (error) {
-    console.log(error);
-  }
-};
+  const navigateToMyPro = () => {
+    navigate("/myProfile");
+  };
 
+  const LogOut = async () => {
+    // Simulate a logout request or clear user data
+    localStorage.setItem("user", "undefined");
+    localStorage.setItem("jwt","undefined")
+    setDataAction(undefined);
+    setUser(null); // Clear the user state
+    setjwt(null)
+    navigate("/");
+  };
+
+  useEffect(() => {
+    // Sync user state with localStorage when it changes
+    const handleStorageChange = () => {
+      const updatedUser = localStorage.getItem("user");
+      setUser(updatedUser && updatedUser !== "undefined" ? JSON.parse(updatedUser) : null);
+    };
+
+    // Listen for storage changes
+    window.addEventListener("storage", handleStorageChange);
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+    };
+  }, []);
 
   console.log("user in nav:", user);
 
   return (
-    <nav className="navbar navbar-expand-lg">
+    <nav className="navbar navbar-expand-lg" id="home">
       <div className="container nav-container">
         {/* Brand Logo */}
         <img className="navbar-brand logo" src="/images/brand1.png" alt="brand" />
@@ -61,31 +81,33 @@ const LogOut = async () => {
         >
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item list-item">
-              <a className="nav-link active" aria-current="page" href="#">
-                Home
-              </a>
+             <HashLink className="nav-link" smooth to="#home">
+               Home
+             </HashLink>
             </li>
             <li className="nav-item list-item">
-              <a className="nav-link" href="#">
-                About
-              </a>
+             
+          
+             <HashLink className="nav-link" smooth to="#testmonial">
+               Testimonials
+             </HashLink>
             </li>
             <li className="nav-item list-item">
-              <a className="nav-link" href="#">
-                Testimonials
-              </a>
+              <HashLink className="nav-link" smooth to="#contact">
+               contact
+             </HashLink>
             </li>
             <li className="nav-item list-item">
-              <a className="nav-link" href="#">
-                Contact
-              </a>
+             <HashLink className="nav-link" smooth to="#about">
+               About
+             </HashLink>
             </li>
           </ul>
 
           {/* Signup/Login or User Profile */}
           <div className="d-flex">
-            {user? (
-              // If dataAction exists, show the user profile with a circle image and logout button
+            {user ? (
+              // If user exists, show the user profile with a circle image and logout button
               <>
                 <img
                   onClick={navigateToMyPro}
@@ -109,7 +131,7 @@ const LogOut = async () => {
                 </button>
               </>
             ) : (
-              // If no dataAction, show SignUp and LogIn buttons
+              // If no user, show SignUp and LogIn buttons
               <>
                 <button
                   className="btn signUp"
@@ -137,4 +159,3 @@ const LogOut = async () => {
 };
 
 export default Nav;
-

@@ -7,7 +7,7 @@ import './styles/test.css'
 
 const Testimonials = () => {
   return (
-    <div className="container py-5">
+    <div className="container py-5" id="testmonial">
       {/* Section Header */}
       <div className="text-center mb-5">
         <h2 className="fw-bold section-title">What Our Clients Say</h2>

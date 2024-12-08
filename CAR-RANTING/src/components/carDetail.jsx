@@ -3,21 +3,25 @@ import Footer from "./Footer";
 import { redirect, useLoaderData } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { width } from "@fortawesome/free-brands-svg-icons/fa42Group";
+import { FaStar } from 'react-icons/fa';  // Import the star icon from React Icons
 
+import { width } from "@fortawesome/free-brands-svg-icons/fa42Group";
+import '/home/bonsa/BIGPROJECT/FRONT-CARRAN/CAR-RANTING/src/components/styles/carDetail.css'
 export const CarLoader = async ({ params }) => {
   const token=localStorage.getItem("jwt")
+  const id =params.id
   try {
-    const res = await axios.get(
-      `http://127.0.0.1:8000/api/v1/car/${params.id}`,
+    const carRes = await axios.get(
+      `http://127.0.0.1:8000/api/v1/car/${id}`,
       { withCredentials: true,
         headers:{
           Authorization:`Bearer ${token}`
         }
        }
     );
-    const car = res.data.data;
-    return { car };
+    const car = carRes.data.data;
+ 
+    return { car,id };
   } catch (error) {
     console.error("Error fetching car data:", error.response || error.message);
     throw redirect('LognIn')
@@ -25,17 +29,51 @@ export const CarLoader = async ({ params }) => {
 };
 
 const CarDetail = () => {
-    const [reviews, setReviews] = useState([
-    { id: 1, name: "John Doe", rating: 5, comment: "Amazing car! Great experience.", timestamp: "2024-12-05T12:34:00" },
-    { id: 2, name: "Jane Smith", rating: 4, comment: "Good service overall.", timestamp: "2024-12-04T15:22:00" },
-    { id: 3, name: "Alex Johnson", rating: 3, comment: "Decent, but could be better.", timestamp: "2024-12-03T10:15:00" },
-  ]);
+  const [reviews, setReviews] = useState([]);
   const [currentRating, setCurrentRating] = useState(0);
   const [currentReviews, setCurrentReviews] = useState(0);
   const [reviewText, setReviewText] = useState(""); // For the review textarea
   const [rating, setRating] = useState(0); // For the star rating input
-  const { car } = useLoaderData();
+  const { car, id } = useLoaderData();
 
+  console.log("Car is:", car);
+  console.log("ID is:", id);
+
+  // UseEffect that runs only once
+
+
+  // UseEffect for reviews fetching
+  useEffect(() => {
+    const fetchReviews = async () => {
+      console.log("Fetching reviews...");
+      try {
+        const token = localStorage.getItem("jwt"); // Retrieve token
+        console.log("id,token is ",id,token)
+        const reviewsRes = await axios.get(
+          `http://127.0.0.1:8000/api/v1/car/${id}/Review`,
+          {
+            withCredentials: true,
+            headers: {
+              Authorization: `Bearer ${token}`,
+               cache: 'no-store' 
+             
+            },
+          }
+        );
+        const reviewsData = reviewsRes.data.reviews; // Assuming the reviews are in the `data` property
+        console.log("Reviews fetched:", reviewsData);
+
+        // Update state with fetched reviews
+        setReviews(reviewsData);
+      } catch (error) {
+        console.error("Error fetching reviews:", error.message);
+      }
+    };
+
+    fetchReviews();
+  }, [car]); // Ensure this runs only once, not dependent on `id`
+
+  // Rating and review count animations
   useEffect(() => {
     let ratingInterval;
     let reviewInterval;
@@ -62,12 +100,23 @@ const CarDetail = () => {
     };
   }, [car.RatingAvrg, car.RatingQuantity, currentRating, currentReviews]);
 
-  const handleSubmitReview = (e) => {
-    e.preventDefault();
+  const handleSubmitReview = async(e) => {
+   try{
+     e.preventDefault();
+     const token = localStorage.getItem("jwt"); // Retrieve token
     console.log("Review submitted:", { rating, reviewText });
+    console.log(token,id)
     alert("Thank you for your review!");
+    const newReview=await axios.post(`http://127.0.0.1:8000/api/v1/car/${id}/Review/`,{rating,review:reviewText},{
+      withCredentials:true,
+      headers:{Authorization:`Bearer ${token}`}
+     })
     setReviewText(""); // Reset review text
     setRating(0); // Reset rating
+   }
+   catch(error){
+    console.log(error.message)
+   }
   };
 
   return (
@@ -83,8 +132,9 @@ const CarDetail = () => {
               className="w-100 rounded shadow"
               style={{ height: "auto" }}
             />
-            <div className="row mt-3">
-              {car.images.slice(1).map((img, index) => (
+          <div className="row mt-3">
+            {car.images && car.images.length > 1 ? (
+              car.images.slice(1).map((img, index) => (
                 <div className="col-6 mb-3" key={index}>
                   <img
                     src="/images/beuty.png"
@@ -92,8 +142,12 @@ const CarDetail = () => {
                     className="w-100 rounded"
                   />
                 </div>
-              ))}
-            </div>
+              ))
+            ) : (
+              <p>No additional images available.</p>
+            )}
+         </div>
+
           </div>
 
           {/* Car Details & Reviews */}
@@ -183,40 +237,48 @@ const CarDetail = () => {
         </div>
       </div>
       <div className="container mt-5" style={{width:"50%",overflowX:"hidden"}}>
-      <h3 className="text-primary mb-4">Customer Reviews</h3>
-      <div className="reviews-list">
-        {reviews.map((review) => (
-          <div className="review-card mb-4 p-4 shadow-sm rounded" key={review.id}>
-            <div className="d-flex align-items-center mb-3">
-              <div
-                className="rounded-circle bg-primary text-white d-flex justify-content-center align-items-center"
-                style={{
-                  width: "40px",
-                  height: "40px",
-                  fontSize: "1.5rem",
-                }}
-              >
-                {review.name[0]}
+      
+ <div className="reviews-container mt-4">
+  <h2 className="text-center mb-4">Customer Reviews</h2>
+  <div className="row">
+    {reviews.length > 0 ? (
+      reviews.map((review, index) => {
+        const roundedRating = Math.round(review.rating); // Round the rating
+        return (
+          <div
+            className="col-md-12 d-flex align-items-center mb-4 review-item"
+            key={index}
+          >
+            {/* Profile Image */}
+            <img
+              src="/images/bonsa.jpg"
+              alt={review.name}
+              className="rounded-circle me-3 profile-image"
+            />
+            {/* Review Content */}
+            <div className="flex-grow-1 d-flex justify-content-between align-items-center review-content">
+              {/* Review */}
+              <h5 className="mb-0">{review.review}</h5>
+
+              {/* Rating */}
+              <div className="text-warning d-flex rating-stars">
+                {Array.from({ length: roundedRating }).map((_, starIndex) => (
+                  <span key={starIndex} className="star">
+                    <FaStar />
+                  </span>
+                ))}
               </div>
-              <div className="ms-3">
-                <h5 className="mb-1">{review.name}</h5>
-                <div className="d-flex">
-                  <div className="text-warning">
-                    {"★".repeat(review.rating)}
-                    {"☆".repeat(5 - review.rating)}
-                  </div>
-                </div>
-                <small className="text-muted">{new Date(review.timestamp).toLocaleString()}</small>
-              </div>
-            </div>
-            <p>{review.comment}</p>
-            <div className="reply-section mt-3">
-              <button className="btn btn-outline-primary btn-sm">Reply</button>
-              {/* Add nested replies here if needed */}
             </div>
           </div>
-        ))}
-      </div>
+        );
+      })
+    ) : (
+      <p className="text-center text-muted">No reviews available yet.</p>
+    )}
+  </div>
+</div>
+
+
     </div>
       <Footer />
     </>

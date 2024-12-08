@@ -7,7 +7,7 @@ import './styles/footer.css';
 const Contact = () => {
   return (
     <>
-      <div className="container my-5">
+      <div className="container my-5" id="contact">
         <div className="d-flex flex-column flex-lg-row align-items-center header_container">
           <div className="text-content me-lg-5 mb-4 mb-lg-0 text-center text-lg-start content-containr">
             <h1 className="display-4 head_of_content">
