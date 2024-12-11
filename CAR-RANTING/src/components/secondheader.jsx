@@ -11,7 +11,7 @@ const Header = () => {
   {/* Car Image Container */}
   <div className="img-container head-img head-img2">
     <img
-      src="images/indigo.png"
+      src="images/jeep2.png"
       alt="Placeholder Image"
       className="img-fluid"
     />

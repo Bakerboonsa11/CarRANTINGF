@@ -18,7 +18,7 @@ const Nav = () => {
   });
 
   const navigate = useNavigate();
-  const { setDataAction } = useNav(); // Access dataAction from the context
+  const { setDataAction} = useNav(); // Access dataAction from the context
 
   const toggleNavbar = () => {
     setIsNavbarCollapsed(!isNavbarCollapsed);
@@ -44,12 +44,13 @@ const Nav = () => {
       const updatedUser = localStorage.getItem("user");
       setUser(updatedUser && updatedUser !== "undefined" ? JSON.parse(updatedUser) : null);
     };
-
+   
     // Listen for storage changes
     window.addEventListener("storage", handleStorageChange);
     return () => {
       window.removeEventListener("storage", handleStorageChange);
     };
+   
   }, []);
 
   console.log("user in nav:", user);
@@ -79,30 +80,29 @@ const Nav = () => {
           }`}
           id="navbarTogglerDemo02"
         >
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item list-item">
-             <HashLink className="nav-link" smooth to="#home">
-               Home
-             </HashLink>
+         <ul className="navbar-nav me-auto mb-2 mb-lg-0 nav-list">
+            <li className="nav-item list-item nav-item-custom">
+              <HashLink className="nav-link" smooth to="#home">
+                Home
+              </HashLink>
             </li>
-            <li className="nav-item list-item">
-             
-          
-             <HashLink className="nav-link" smooth to="#testmonial">
-               Testimonials
-             </HashLink>
+            <li className="nav-item list-item nav-item-custom">
+              <HashLink className="nav-link" smooth to="#testmonial">
+                Testimonials
+              </HashLink>
             </li>
-            <li className="nav-item list-item">
+            <li className="nav-item list-item nav-item-custom">
               <HashLink className="nav-link" smooth to="#contact">
-               contact
-             </HashLink>
+                Contact
+              </HashLink>
             </li>
-            <li className="nav-item list-item">
-             <HashLink className="nav-link" smooth to="#about">
-               About
-             </HashLink>
+            <li className="nav-item list-item nav-item-custom">
+              <HashLink className="nav-link" smooth to="#about">
+                About
+              </HashLink>
             </li>
           </ul>
+
 
           {/* Signup/Login or User Profile */}
           <div className="d-flex">
@@ -111,7 +111,11 @@ const Nav = () => {
               <>
                 <img
                   onClick={navigateToMyPro}
-                  src="/images/bonsa.jpg" // Replace with actual user image URL or avatar
+                  src={
+                 user.photo && user.photo !== "undefined"
+                 ? `http://127.0.0.1:8000/images/users/${user.photo}`
+                 : "http://127.0.0.1:8000/images/default.jpg"
+            }
                   alt="User"
                   className="user-profile-img"
                   style={{

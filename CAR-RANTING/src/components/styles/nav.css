@@ -18,3 +18,57 @@ img{
     
     width: 100px;
 }
+
+/* Style for the ul */
+.nav-list {
+  display: flex;
+  gap: 20px; /* Space between list items */
+  padding: 10px 20px;
+  list-style: none; /* Remove default bullet points */
+  background: linear-gradient(90deg, #172774, #415099);
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Style for li */
+.nav-item-custom {
+  font-size: 1.1rem;
+  font-weight: bold;
+  position: relative; /* For hover effect */
+  padding: 10px;
+  transition: transform 0.3s, color 0.3s;
+}
+
+.nav-item-custom:hover {
+  transform: scale(1.1); /* Slight zoom on hover */
+  color: #ff69b4; /* Cute pink */
+}
+
+/* Style for links */
+.nav-item-custom .nav-link {
+  color: white;
+  text-decoration: none; /* Remove underline */
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.nav-item-custom .nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.2); /* Soft hover background */
+  color: #fff;
+}
+
+/* Add a cute underline effect */
+.nav-item-custom .nav-link::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  background: white;
+  transition: width 0.3s;
+  margin: 0 auto;
+}
+
+.nav-item-custom .nav-link:hover::after {
+  width: 100%; /* Expand underline on hover */
+}

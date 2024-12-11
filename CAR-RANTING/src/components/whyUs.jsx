@@ -14,50 +14,52 @@ const WhyUs=()=>{
                 facere aliquam? Laboriosam dolores perspiciatis nisi harum sed! Nisi,<br/> odio incidunt. Placeat, impedit 
                 adipisci veritatis perferendis natus deleniti fugit nostrum eum.</p>
 
-            <img src="/images/beuty.png" alt="" className="why-img" />
+            <img src="/images/honda-civic2.png" alt="" className="why-img" />
+            
 
             <div className="d-flex flex-row justify-content-around flex-md-nowrap flex-wrap">
             {/* Block 1 */}
-            <div className="d-flex flex-column align-items-center mb-3">
-                <div className="p-2">
-                <div className="why-icon-conti">
-                    <FontAwesomeIcon icon={faGear} className="why-icon" />
+          <div className="d-flex flex-column align-items-center mb-3 fancy-container">
+            <div className="p-2">
+                <div className="why-icon-conti fancy-icon-container">
+                <FontAwesomeIcon icon={faGear} className="why-icon fancy-icon" />
                 </div>
-                <h4 className="why-icon-conti-h">Welcome to the dom title</h4>
-                <p className="why-icon-conti-p">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad cupiditate quae,<br />
-                    culpa cumque esse dolores ullam magnam laboriosam.
+                <h4 className="why-icon-conti-h fancy-title">Welcome to the Dom Title</h4>
+                <p className="why-icon-conti-p fancy-paragraph">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad cupiditate quae,<br />
+                culpa cumque esse dolores ullam magnam laboriosam.
                 </p>
-                </div>
             </div>
+         </div>
+
 
             {/* Block 2 */}
-              <div className="d-flex flex-column align-items-center mb-3">
-                <div className="p-2">
-                <div className="why-icon-conti">
-                    <FontAwesomeIcon icon={faGear} className="why-icon" />
+              <div className="d-flex flex-column align-items-center mb-3 fancy-container">
+            <div className="p-2">
+                <div className="why-icon-conti fancy-icon-container">
+                <FontAwesomeIcon icon={faGear} className="why-icon fancy-icon" />
                 </div>
-                <h4 className="why-icon-conti-h">Welcome to the dom title</h4>
-                <p className="why-icon-conti-p">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad cupiditate quae,<br />
-                    culpa cumque esse dolores ullam magnam laboriosam.
+                <h4 className="why-icon-conti-h fancy-title">Welcome to the Dom Title</h4>
+                <p className="why-icon-conti-p fancy-paragraph">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad cupiditate quae,<br />
+                culpa cumque esse dolores ullam magnam laboriosam.
                 </p>
-                </div>
             </div>
+             </div>
 
             {/* Block 3 */}
-              <div className="d-flex flex-column align-items-center mb-3 each-why-cont">
-                <div className="p-2">
-                <div className="why-icon-conti">
-                    <FontAwesomeIcon icon={faGear} className="why-icon" />
+              <div className="d-flex flex-column align-items-center mb-3 fancy-container">
+            <div className="p-2">
+                <div className="why-icon-conti fancy-icon-container">
+                <FontAwesomeIcon icon={faGear} className="why-icon fancy-icon" />
                 </div>
-                <h4 className="why-icon-conti-h">Welcome to the dom title</h4>
-                <p className="why-icon-conti-p">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad cupiditate quae,<br />
-                    culpa cumque esse dolores ullam magnam laboriosam.
+                <h4 className="why-icon-conti-h fancy-title">Welcome to the Dom Title</h4>
+                <p className="why-icon-conti-p fancy-paragraph">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad cupiditate quae,<br />
+                culpa cumque esse dolores ullam magnam laboriosam.
                 </p>
-                </div>
             </div>
+         </div>
             </div>
 
 

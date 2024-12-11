@@ -56,3 +56,101 @@
 .content-2-btn{
     width: 150px;
 }
+/* Fancy container styles */
+.fancy-container {
+  padding: 20px;
+  border-radius: 15px;
+  background: linear-gradient(145deg, #ffe3f3, #f8c8d6);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.fancy-container:hover {
+  transform: scale(1.05); /* Slight zoom effect */
+}
+
+/* Fancy icon container */
+.fancy-icon-container {
+  background: linear-gradient(135deg, #ff6fa7, #ffc3d8);
+  padding: 15px;
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+  animation: rotate 3s linear infinite;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Fancy icon */
+.fancy-icon {
+  color: white;
+  font-size: 2rem;
+}
+
+/* Fancy title */
+.fancy-title {
+  font-size: 1.5rem;
+  color: #d94f7d;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 10px;
+  text-transform: capitalize;
+}
+
+/* Fancy paragraph */
+.fancy-paragraph {
+  font-size: 1rem;
+  color: #555;
+  text-align: center;
+  line-height: 1.6;
+}
+/* Style for the h6 (why-us-head) */
+.why-us-head {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #333;
+  text-align: center;
+  margin-bottom: 15px;
+  position: relative;
+  text-transform: none;
+  letter-spacing: 0.5px;
+}
+
+.why-us-head::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: #ff6f61;
+  margin: 8px auto 0;
+  border-radius: 5px;
+}
+
+/* Style for the p (why-us-p) */
+.why-us-p {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #555;
+  text-align: center;
+  line-height: 1.6;
+  max-width: 700px;
+  margin: 0 auto 20px;
+  padding: 0 20px;
+  border-left: 4px solid #ff6f61;
+  border-right: 4px solid #ff6f61;
+  background: #f9f9f9;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+

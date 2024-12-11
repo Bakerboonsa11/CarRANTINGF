@@ -1,0 +1,155 @@
+/* General Container Styling */
+.profile-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #dbdeed, #a2aaec);
+  padding: 20px;
+}
+
+.profile-card {
+  background: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  width: 100%;
+  max-width: 500px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Header Styling */
+.profile-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.profile-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #172774;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.profile-name {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #172774;
+  margin-top: 10px;
+}
+
+.profile-divider {
+  border: 0;
+  height: 1px;
+  background: #172774;
+  margin: 20px 0;
+}
+
+/* Details Section */
+.profile-details {
+  text-align: center;
+}
+
+.profile-about {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.profile-section-title {
+  font-size: 1.2rem;
+  color: #172774;
+  margin-bottom: 10px;
+}
+
+.profile-info {
+  color: #333;
+  font-size: 1rem;
+  margin-bottom: 5px;
+}
+
+/* Buttons */
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.profile-btn {
+  background: #172774;
+  color: white;
+}
+
+.profile-btn:hover {
+  background: #212f9a;
+  transform: scale(1.05);
+}
+
+.save-btn {
+  background: #28a745;
+  color: white;
+}
+
+.save-btn:hover {
+  background: #218838;
+}
+
+.cancel-btn {
+  background: #dc3545;
+  color: white;
+}
+
+.cancel-btn:hover {
+  background: #c82333;
+}
+
+/* Form */
+.profile-edit-form {
+  padding: 10px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  font-size: 1rem;
+  color: #555;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.form-input:focus {
+  border-color: #172774;
+  outline: none;
+}
+
+/* Actions */
+.profile-actions {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.profile-actions .btn {
+  margin: 5px;
+}

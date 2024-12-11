@@ -43,17 +43,17 @@ const Card =() => {
               <div key={car._id} className="col-lg-4 col-md-6 mb-4 each-card">
                   <div className="card card-custom" style={{ width: '100%' }}>
                           <img
-                            src="/images/indigo.png" 
+                            src={`http://127.0.0.1:8000/images/cars/${car.images[0]}`}
                             className="card-img-top card-img-custom"
                             alt="Card image"
                           />
                           <div className="card-body">
                             <div className="d-flex justify-content-between">
-                              <h5 className="card-title">{car.color}</h5>
+                              <h5 className="card-title">{car.name.toUpperCase()}</h5>
                               <div>**********</div>
                             </div>
-                            <h6 className="card-subtitle mb-2 text-body-secondary">{car.name}</h6>
-                            <p className="card-text price-text">{`$${car.pricePerDay}/DAY`}</p>
+                            <h6 className="card-subtitle mb-2 text-body-secondary">{`${car.name} with __${car.color} Color`}</h6>
+                            <p className="card-text price-text">{`$${car.pricePerDay}`}</p>
                         <div className="d-flex justify-content-between">
                                 {/* Feature 1: Manual */}
                                 <div className="d-flex flex-column mb-3 card-icon-to-title">
@@ -68,7 +68,7 @@ const Card =() => {
                                   <span className="card-icon">
                                     <FontAwesomeIcon icon={faChair} className="my-icons" /> {/* Replace with your desired icon */}
                                   </span>
-                                  <span className="card-text">5 ST</span>
+                                  <span className="card-text">{`${car.numberOfSeat} Seat`}</span>
                                 </div>
 
                                 {/* Feature 3: Gas */}

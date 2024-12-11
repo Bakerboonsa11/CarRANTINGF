@@ -1,81 +1,69 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faApple, faGooglePlay } from "@fortawesome/free-brands-svg-icons";
-import { faMapMarkerAlt, faCalendarAlt, faClock,faGear, faChair, faGasPump, faBolt, faCar } from "@fortawesome/free-solid-svg-icons";
-import './styles/test.css'
-
-
+import { faQuoteLeft } from "@fortawesome/free-solid-svg-icons";
+import './styles/test.css'; // New CSS file specific to Testimonials
 
 const Testimonials = () => {
   return (
-    <div className="container py-5" id="testmonial">
+    <div className="testimonials-container py-5" id="testimonials">
       {/* Section Header */}
-      <div className="text-center mb-5">
-        <h2 className="fw-bold section-title">What Our Clients Say</h2>
-        <p className="text-muted">Hear directly from our satisfied customers.</p>
+      <div className="testimonials-header text-center mb-5">
+        <h2 className="testimonials-title">Our Clients Love Us</h2>
+        <p className="testimonials-subtitle">What they have to say about us</p>
       </div>
 
       {/* Testimonial Grid */}
-      <div className="row">
+      <div className="testimonials-grid">
         {/* Testimonial 1 */}
-        <div
-          className="col-md-4 mb-4 d-flex justify-content-center animate-fade-in"
-        >
-          <div className="card shadow-lg p-4 testimonial-card">
-            <div className="card-body text-center">
-              <img
-                src="/images/bonsa.jpg"
-                alt="John Doe"
-                className="rounded-circle mb-3 testimonial-img"
-              />
-              <h5 className="card-title fw-bold">John Doe</h5>
-              <p className="text-muted">CEO, Example Corp</p>
-              <p className="card-text fst-italic">
-                "This product has revolutionized the way we work. I can't
-                recommend it enough!"
-              </p>
-            </div>
+        <div className="testimonial-card">
+          <FontAwesomeIcon icon={faQuoteLeft} className="testimonial-quote-icon" />
+          <div className="testimonial-content">
+            <img
+              src="/images/bonsa.jpg"
+              alt="John Doe"
+              className="testimonial-image"
+            />
+            <h5 className="testimonial-name">John Doe</h5>
+            <p className="testimonial-role">CEO, Example Corp</p>
+            <p className="testimonial-text">
+              "This product has completely changed the way we work. It's truly
+              a game-changer!"
+            </p>
           </div>
         </div>
 
         {/* Testimonial 2 */}
-        <div
-          className="col-md-4 mb-4 d-flex justify-content-center animate-fade-in delay-1s"
-        >
-          <div className="card shadow-lg p-4 testimonial-card">
-            <div className="card-body text-center">
-              <img
-               src="/images/bonsa.jpg"
-                alt="Jane Smith"
-                className="rounded-circle mb-3 testimonial-img"
-              />
-              <h5 className="card-title fw-bold">Jane Smith</h5>
-              <p className="text-muted">Marketing Head, ABC Ltd</p>
-              <p className="card-text fst-italic">
-                "The team behind this service is simply outstanding. The
-                quality speaks for itself."
-              </p>
-            </div>
+        <div className="testimonial-card">
+          <FontAwesomeIcon icon={faQuoteLeft} className="testimonial-quote-icon" />
+          <div className="testimonial-content">
+            <img
+              src="/images/bonsa.jpg"
+              alt="Jane Smith"
+              className="testimonial-image"
+            />
+            <h5 className="testimonial-name">Jane Smith</h5>
+            <p className="testimonial-role">Marketing Head, ABC Ltd</p>
+            <p className="testimonial-text">
+              "The quality and professionalism of the team blew us away.
+              Highly recommended!"
+            </p>
           </div>
         </div>
 
         {/* Testimonial 3 */}
-        <div
-          className="col-md-4 mb-4 d-flex justify-content-center animate-fade-in delay-2s"
-        >
-          <div className="card shadow-lg p-4 testimonial-card">
-            <div className="card-body text-center">
-              <img
-                src="/images/bonsa.jpg"
-                alt="Robert Brown"
-                className="rounded-circle mb-3 testimonial-img"
-              />
-              <h5 className="card-title fw-bold">Robert Brown</h5>
-              <p className="text-muted">Entrepreneur</p>
-              <p className="card-text fst-italic">
-                "A fantastic experience from start to finish. Highly
-                professional and innovative."
-              </p>
-            </div>
+        <div className="testimonial-card">
+          <FontAwesomeIcon icon={faQuoteLeft} className="testimonial-quote-icon" />
+          <div className="testimonial-content">
+            <img
+              src="/images/bonsa.jpg"
+              alt="Robert Brown"
+              className="testimonial-image"
+            />
+            <h5 className="testimonial-name">Robert Brown</h5>
+            <p className="testimonial-role">Entrepreneur</p>
+            <p className="testimonial-text">
+              "I can't recommend this service enough. It's been an incredible
+              experience from start to finish!"
+            </p>
           </div>
         </div>
       </div>
@@ -84,8 +72,3 @@ const Testimonials = () => {
 };
 
 export default Testimonials;
-
-
-
-
-
