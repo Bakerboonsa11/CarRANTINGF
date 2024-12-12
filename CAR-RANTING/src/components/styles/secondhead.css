@@ -60,7 +60,7 @@
 .fancy-container {
   padding: 20px;
   border-radius: 15px;
-  background: linear-gradient(145deg, #ffe3f3, #f8c8d6);
+  /* background: linear-gradient(145deg, #5360a2, #172774); */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease-in-out;
 }
@@ -70,7 +70,7 @@
 }
 
 /* Fancy icon container */
-.fancy-icon-container {
+/* .fancy-icon-container {
   background: linear-gradient(135deg, #ff6fa7, #ffc3d8);
   padding: 15px;
   border-radius: 50%;
@@ -80,7 +80,7 @@
   justify-content: center;
   margin-bottom: 15px;
   animation: rotate 3s linear infinite;
-}
+} */
 
 @keyframes rotate {
   0% {
@@ -126,7 +126,7 @@
   letter-spacing: 0.5px;
 }
 
-.why-us-head::after {
+/* .why-us-head::after {
   content: '';
   display: block;
   width: 60px;
@@ -134,7 +134,7 @@
   background: #ff6f61;
   margin: 8px auto 0;
   border-radius: 5px;
-}
+} */
 
 /* Style for the p (why-us-p) */
 .why-us-p {
@@ -146,8 +146,8 @@
   max-width: 700px;
   margin: 0 auto 20px;
   padding: 0 20px;
-  border-left: 4px solid #ff6f61;
-  border-right: 4px solid #ff6f61;
+  border-left: 4px solid #172774;
+  border-right: 4px solid #172774;
   background: #f9f9f9;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 8px;

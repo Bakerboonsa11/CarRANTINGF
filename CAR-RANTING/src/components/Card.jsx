@@ -10,11 +10,15 @@ import './styles/card.css';
 const Card =() => {
   const [cars,setCars]=useState([]);
   const [loder,setLoder]=useState(true)
+  const RatingArray=[1,2,3,4,5];
   useEffect(()=>{
    const  featchedCar=async ()=>{
       try{
         const response =await axios.get('http://127.0.0.1:8000/api/v1/car')
         setCars(response.data.instanceFiltered)
+        console.log("ratingavr",response.data.instanceFiltered[0]
+
+        )
         console.log(response.data)
         setLoder(false)
       }
@@ -28,18 +32,22 @@ const Card =() => {
   
 
   },[])
-
+  
   if(loder){
     return <div>Loder</div>
   }
+  console.log(cars[0].ratingAvrg)
   return (
     
     <div className="card-wrapper">
     
       <div className="container card_container">
         <div className="row justify-content-around">
-            {
+            { 
+
+          
               cars.map((car)=>(
+                
               <div key={car._id} className="col-lg-4 col-md-6 mb-4 each-card">
                   <div className="card card-custom" style={{ width: '100%' }}>
                           <img
@@ -50,7 +58,16 @@ const Card =() => {
                           <div className="card-body">
                             <div className="d-flex justify-content-between">
                               <h5 className="card-title">{car.name.toUpperCase()}</h5>
-                              <div>**********</div>
+                           <div>
+                                {
+                                  RatingArray.map((rate, index) => (
+                                    <span key={index} className={rate < car.RatingAvrg ? "blue_star":"white_star" }>
+                                      ★
+                                    </span>
+                                  ))
+                                }
+                              </div>
+
                             </div>
                             <h6 className="card-subtitle mb-2 text-body-secondary">{`${car.name} with __${car.color} Color`}</h6>
                             <p className="card-text price-text">{`$${car.pricePerDay}`}</p>
@@ -84,7 +101,7 @@ const Card =() => {
                                   <span className="card-icon">
                                     <FontAwesomeIcon icon={faBolt} className="my-icons"/> {/* Replace with your desired icon */}
                                   </span>
-                                  <span className="card-text">{`${car.mileage}HP`}</span>
+                                  <span className="card-text">{`${car.mileage} HP`}</span>
                                 </div>
 
                                 {/* Feature 5: Front-wheel Drive */}

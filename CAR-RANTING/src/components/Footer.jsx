@@ -1,5 +1,6 @@
 import React from "react";
 import './styles/footer.css'; // Include the new styles here
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 const Footer = () => {
   return (
@@ -37,20 +38,21 @@ const Footer = () => {
         {/* Follow Us */}
         <div className="footer-item">
           <h4 className="footer-title">Follow Us</h4>
-          <div className="footer-social">
-            <a href="https://facebook.com" className="footer-social-icon">
-              <img src="/icons/facebook-icon.png" alt="Facebook" />
-            </a>
-            <a href="https://twitter.com" className="footer-social-icon">
-              <img src="/icons/twitter-icon.png" alt="Twitter" />
-            </a>
-            <a href="https://instagram.com" className="footer-social-icon">
-              <img src="/icons/instagram-icon.png" alt="Instagram" />
-            </a>
-            <a href="https://linkedin.com" className="footer-social-icon">
-              <img src="/icons/linkedin-icon.png" alt="LinkedIn" />
-            </a>
-          </div>
+         <div className="footer-social">
+          <a href="https://facebook.com" className="footer-social-icon" target="_blank" rel="noopener noreferrer">
+            <i className="fab fa-facebook"></i>
+          </a>
+          <a href="https://twitter.com" className="footer-social-icon" target="_blank" rel="noopener noreferrer">
+            <i className="fab fa-twitter"></i>
+          </a>
+          <a href="https://instagram.com" className="footer-social-icon" target="_blank" rel="noopener noreferrer">
+            <i className="fab fa-instagram"></i>
+          </a>
+          <a href="https://linkedin.com" className="footer-social-icon" target="_blank" rel="noopener noreferrer">
+            <i className="fab fa-linkedin"></i>
+          </a>
+        </div>
+
         </div>
       </div>
 
