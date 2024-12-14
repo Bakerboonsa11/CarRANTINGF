@@ -22,7 +22,8 @@ export const signUpAction = async ({ request }) => {
     // Extract token from the response
     const user= response.data.user;
     console.log("user received:", user); // Logs the token
-    
+    localStorage.setItem("user", JSON.stringify(user));
+    localStorage.setItem("jwt",response.data.token)
     // Redirect and pass the token in the state
     return {user}
   } catch (err) {
@@ -35,21 +36,7 @@ const SignUp = () => {
     const { setDataAction } = useNav(); 
     const navigate=useNavigate()
    console.log('action adata',user)
-//  const [logedIn,setLoggedIn]=useState(null)
-//  const [isLoding,setIsLoding]=useState(true)
-//     useEffect(()=>{
-//         const signUpUser=async ()=>{
-//            try{
 
-//            const user=await axios.post('http://127.0.0.1/api/v1/user/SignUp')
-//             console.log(user)
-//            }
-//            catch(error){
-//              console.log(error)
-//            }
-//         }
-      
-//     },[])
             useEffect(()=>{
                 if(user){
                     setDataAction(user)
