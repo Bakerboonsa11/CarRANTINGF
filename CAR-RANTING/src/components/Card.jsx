@@ -36,7 +36,13 @@ const Card =() => {
   if(loder){
     return <div>Loder</div>
   }
-  console.log(cars[0].ratingAvrg)
+ 
+
+  if(!cars){
+    return (
+      <div>""</div>
+    )
+  }
   return (
     
     <div className="card-wrapper">
@@ -44,7 +50,7 @@ const Card =() => {
       <div className="container card_container">
         <div className="row justify-content-around">
             { 
-
+            
           
               cars.map((car)=>(
                 

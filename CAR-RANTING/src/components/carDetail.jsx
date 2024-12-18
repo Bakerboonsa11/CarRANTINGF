@@ -1,8 +1,9 @@
 import Nav from "./navigation";
 import Footer from "./Footer";
-import { redirect, useLoaderData } from "react-router-dom";
+import { Navigate, redirect, useLoaderData } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { loadStripe } from "@stripe/stripe-js";
 import { FaStar } from 'react-icons/fa';  // Import the star icon from React Icons
 
 import { width } from "@fortawesome/free-brands-svg-icons/fa42Group";
@@ -27,7 +28,7 @@ export const CarLoader = async ({ params }) => {
     throw redirect('LognIn')
   }
 };
-
+ const stripePromise=loadStripe('pk_test_51QWC7ZF3rcoABgjIQqQx3eY9Ad5YJyB3SwxsaoohzOfehLXplcCzlo4O4Shck8dUhMjfaplbpik41jkCotVpakne00BNt2vvzF')
 const CarDetail = () => {
   const [reviews, setReviews] = useState([]);
   const [currentRating, setCurrentRating] = useState(0);
@@ -35,7 +36,8 @@ const CarDetail = () => {
   const [reviewText, setReviewText] = useState(""); // For the review textarea
   const [rating, setRating] = useState(0); // For the star rating input
   const { car, id } = useLoaderData();
-
+  const [stripeLoader,setStripeLoader]=useState(false);
+  const [stripeError,setStripeError]=useState(false)
   console.log("Car is:", car);
   console.log("ID is:", id);
 
@@ -119,6 +121,37 @@ const CarDetail = () => {
    }
   };
 
+  const handleBooking=async()=>{
+    try{
+     setStripeLoader(true)
+      const token = localStorage.getItem("jwt");
+      const response= await axios.get(`http://127.0.0.1:8000/api/v1/bookings/cheach-session/${id}`,
+       { withCredentials: true,
+            headers: {
+              Authorization: `Bearer ${token}`,
+               cache: 'no-store' 
+             
+            }, })
+     const sessionId = await response.data.session.id
+     console.log("id in stripe is ",sessionId)
+
+     const stripe=await stripePromise
+     const result = await stripe.redirectToCheckout({ sessionId });
+    
+      if (result.error) {
+        setStripeError(result.error.message);
+      }
+   
+    }
+    catch(error){
+        setStripeError('Failed to create checkout session. Please try again.');
+      console.error(error);
+    }
+     setStripeLoader(false)
+
+  
+  }
+
   return (
     <>
       <Nav />
@@ -127,7 +160,7 @@ const CarDetail = () => {
           {/* Car Images */}
           <div className="col-lg-6 mb-4">
             <img
-              src="/images/beuty.png"
+              src={`http://127.0.0.1:8000/images/cars/${car.images[0]}`}
               alt={car.name}
               className="w-100 rounded shadow"
               style={{ height: "auto" }}
@@ -137,7 +170,7 @@ const CarDetail = () => {
               car.images.slice(1).map((img, index) => (
                 <div className="col-6 mb-3" key={index}>
                   <img
-                    src="/images/beuty.png"
+                    src={`http://127.0.0.1:8000/images/cars/${img}`}
                     alt={`Car thumbnail ${index}`}
                     className="w-100 rounded"
                   />
@@ -191,7 +224,7 @@ const CarDetail = () => {
                     ({currentReviews} Reviews)
                   </h5>
                 </div>
-                <button className="btn btn-primary btn-lg">Book Now</button>
+                <button className="btn btn-primary btn-lg" onClick={handleBooking}>Book Now</button>
               </div>
 
               {/* Review Section */}
