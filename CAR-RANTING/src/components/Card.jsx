@@ -14,7 +14,7 @@ const Card =() => {
   useEffect(()=>{
    const  featchedCar=async ()=>{
       try{
-        const response =await axios.get('http://127.0.0.1:8000/api/v1/car')
+        const response =await axios.get('https://carranting-qqgl.onrender.com/api/v1/car')
         setCars(response.data.instanceFiltered)
         console.log("ratingavr",response.data.instanceFiltered[0]
 
@@ -55,9 +55,10 @@ const Card =() => {
               cars.map((car)=>(
                 
               <div key={car._id} className="col-lg-4 col-md-6 mb-4 each-card">
+                {console.log('the is is ',car.id)}
                   <div className="card card-custom" style={{ width: '100%' }}>
                           <img
-                            src={`http://127.0.0.1:8000/images/cars/${car.images[0]}`}
+                            src={`https://carranting-qqgl.onrender.com/images/cars/${car.images[0]}`}
                             className="card-img-top card-img-custom"
                             alt="Card image"
                           />

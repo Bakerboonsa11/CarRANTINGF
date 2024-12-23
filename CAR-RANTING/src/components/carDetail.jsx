@@ -13,7 +13,7 @@ export const CarLoader = async ({ params }) => {
   const id =params.id
   try {
     const carRes = await axios.get(
-      `http://127.0.0.1:8000/api/v1/car/${id}`,
+      `https://carranting-qqgl.onrender.com/api/v1/car/${id}`,
       { withCredentials: true,
         headers:{
           Authorization:`Bearer ${token}`
@@ -52,7 +52,7 @@ const CarDetail = () => {
         const token = localStorage.getItem("jwt"); // Retrieve token
         console.log("id,token is ",id,token)
         const reviewsRes = await axios.get(
-          `http://127.0.0.1:8000/api/v1/car/${id}/Review`,
+          `https://carranting-qqgl.onrender.com/api/v1/car/${id}/Review`,
           {
             withCredentials: true,
             headers: {
@@ -109,7 +109,7 @@ const CarDetail = () => {
     console.log("Review submitted:", { rating, reviewText });
     console.log(token,id)
     alert("Thank you for your review!");
-    const newReview=await axios.post(`http://127.0.0.1:8000/api/v1/car/${id}/Review/`,{rating,review:reviewText},{
+    const newReview=await axios.post(`https://carranting-qqgl.onrender.com/api/v1/car/${id}/Review/`,{rating,review:reviewText},{
       withCredentials:true,
       headers:{Authorization:`Bearer ${token}`}
      })
@@ -125,7 +125,7 @@ const CarDetail = () => {
     try{
      setStripeLoader(true)
       const token = localStorage.getItem("jwt");
-      const response= await axios.get(`http://127.0.0.1:8000/api/v1/bookings/cheach-session/${id}`,
+      const response= await axios.get(`https://carranting-qqgl.onrender.com/api/v1/bookings/cheach-session/${id}`,
        { withCredentials: true,
             headers: {
               Authorization: `Bearer ${token}`,
@@ -160,7 +160,7 @@ const CarDetail = () => {
           {/* Car Images */}
           <div className="col-lg-6 mb-4">
             <img
-              src={`http://127.0.0.1:8000/images/cars/${car.images[0]}`}
+              src={`https://carranting-qqgl.onrender.com/images/cars/${car.images[0]}`}
               alt={car.name}
               className="w-100 rounded shadow"
               style={{ height: "auto" }}
@@ -170,7 +170,7 @@ const CarDetail = () => {
               car.images.slice(1).map((img, index) => (
                 <div className="col-6 mb-3" key={index}>
                   <img
-                    src={`http://127.0.0.1:8000/images/cars/${img}`}
+                    src={`https://carranting-qqgl.onrender.com/images/cars/${img}`}
                     alt={`Car thumbnail ${index}`}
                     className="w-100 rounded"
                   />
@@ -321,3 +321,6 @@ const CarDetail = () => {
 export default CarDetail;
 
 
+
+
+{{{{{{{}}}}}}}
