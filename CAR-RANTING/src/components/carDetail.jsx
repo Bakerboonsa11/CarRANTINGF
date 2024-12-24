@@ -7,7 +7,8 @@ import { loadStripe } from "@stripe/stripe-js";
 import { FaStar } from 'react-icons/fa';  // Import the star icon from React Icons
 
 import { width } from "@fortawesome/free-brands-svg-icons/fa42Group";
-import '/home/bonsa/BIGPROJECT/FRONT-CARRAN/CAR-RANTING/src/components/styles/carDetail.css'
+// import '/home/bonsa/BIGPROJECT/FRONT-CARRAN/CAR-RANTING/src/components/styles/carDetail.css'
+import './styles/carDetail.css'
 export const CarLoader = async ({ params }) => {
   const token=localStorage.getItem("jwt")
   const id =params.id
