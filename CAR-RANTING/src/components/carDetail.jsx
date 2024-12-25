@@ -122,36 +122,39 @@ const CarDetail = () => {
    }
   };
 
-  const handleBooking=async()=>{
-    try{
-     setStripeLoader(true)
-      const token = localStorage.getItem("jwt");
-      const response= await axios.get(`https://carranting-qqgl.onrender.com/api/v1/bookings/cheach-session/${id}`,
-       { withCredentials: true,
-            headers: {
-              Authorization: `Bearer ${token}`,
-               cache: 'no-store' 
-             
-            }, })
-     const sessionId = await response.data.session.id
-     console.log("id in stripe is ",sessionId)
-
-     const stripe=await stripePromise
-     const result = await stripe.redirectToCheckout({ sessionId });
-    
-      if (result.error) {
-        setStripeError(result.error.message);
+const handleBooking = async () => {
+  try {
+    setStripeLoader(true);
+    const token = localStorage.getItem("jwt");
+    const response = await axios.get(
+      `https://carranting-qqgl.onrender.com/api/v1/bookings/cheach-session/${id}`,
+      {
+        withCredentials: true,
+        headers: {
+          Authorization: `Bearer ${token}`,
+          cache: "no-store",
+        },
       }
-   
+    );
+    const sessionId = response.data.session?.id; // Optional chaining to safely get sessionId
+    if (!sessionId) {
+      throw new Error('No session ID returned');
     }
-    catch(error){
-        setStripeError('Failed to create checkout session. Please try again.');
-      console.error(error);
-    }
-     setStripeLoader(false)
+    console.log("Session ID:", sessionId);
 
-  
+    const stripe = await stripePromise;
+    const result = await stripe.redirectToCheckout({ sessionId });
+
+    if (result.error) {
+      setStripeError(result.error.message);
+    }
+  } catch (error) {
+    setStripeError("Failed to create checkout session. Please try again.");
+    console.error("Booking error:", error);
   }
+  setStripeLoader(false);
+};
+
 
   return (
     <>
