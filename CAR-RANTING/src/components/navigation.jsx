@@ -109,13 +109,17 @@ const Nav = () => {
             {user ? (
               // If user exists, show the user profile with a circle image and logout button
               <>
-                <img
+               <img
                   onClick={navigateToMyPro}
                   src={
-                 user.photo && user.photo !== "undefined"
-                 ? `https://carranting-1.onrender.com/images/users/${user.photo}`
-                 : "https://carranting-1.onrender.com/images/default.jpg"
-            }
+                    user.photo && user.photo !== "undefined"
+                      ? `https://carranting-1.onrender.com/images/users/${user.photo}`
+                      : "https://carranting-1.onrender.com/images/default.jpg"
+                  }
+                  onError={(e) => {
+                    e.target.onerror = null; // Prevent infinite loop
+                    e.target.src = "https://carranting-1.onrender.com/images/default.jpg"; // Fallback image
+                  }}
                   alt="User"
                   className="user-profile-img"
                   style={{
@@ -125,6 +129,8 @@ const Nav = () => {
                     marginRight: "10px",
                   }}
                 />
+
+                
                 <button
                   className="btn logout"
                   type="button"
