@@ -113,8 +113,8 @@ const Nav = () => {
                   onClick={navigateToMyPro}
                   src={
                  user.photo && user.photo !== "undefined"
-                 ? `https://carranting-qqgl.onrender.com/images/users/${user.photo}`
-                 : "https://carranting-qqgl.onrender.com/images/default.jpg"
+                 ? `https://carranting-1.onrender.com/images/users/${user.photo}`
+                 : "https://carranting-1.onrender.com/images/default.jpg"
             }
                   alt="User"
                   className="user-profile-img"
